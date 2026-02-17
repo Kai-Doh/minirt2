@@ -85,7 +85,7 @@ $(LIBFT_A):
 mlx: $(MLX_A)
 $(MLX_A):
 	@printf "$(BLUE)Building MiniLibX in $(MLX_DIR)...$(RESET)\n"
-	@$(MAKE) -C $(MLX_DIR) CC=gcc-11 --no-print-directory > /dev/null || true
+	@$(MAKE) -C $(MLX_DIR) CC=gcc --no-print-directory > /dev/null || true
 	@printf "$(GREEN)✓ MiniLibX ready (or already built).$(RESET)\n"
 
 $(NAME): $(LIBFT_A) $(MLX_A) $(OBJS)
