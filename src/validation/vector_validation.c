@@ -16,10 +16,12 @@ t_bool	is_normalized_vector(t_vector *vec)
 {
 	double	magnitude;
 
-	magnitude = vec->x * vec->x + vec->y * vec->y + vec->z * vec->z;
-	if (magnitude < 0.99 || magnitude > 1.01)
-	{
+	if (vec->x < -1 || vec->x > 1 || vec->y < -1 || vec->y > 1
+		|| vec->z < -1 || vec->z > 1)
 		return (FALSE);
-	}
+	magnitude = vec->x * vec->x + vec->y * vec->y + vec->z * vec->z;
+	if (magnitude < 1e-10)
+		return (FALSE);
+	*vec = vector_normalize(*vec);
 	return (TRUE);
 }

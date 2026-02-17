@@ -77,24 +77,26 @@ int	intersec_cylinders(t_ray *ray, t_scene *scene)
 {
 	int		i;
 	double	abc[3];
-	double	t;
+	double	t[2];
 	double	closest_t;
 
-	i = 0;
+	i = -1;
 	closest_t = ray->hit.delta;
 	if (closest_t == 0)
 		closest_t = -1;
-	while (i < scene->cylinder_count)
+	while (++i < scene->cylinder_count)
 	{
 		scene->cylinders[i].axis = vector_normalize(scene->cylinders[i].axis);
 		get_cylinder_abc(&scene->cylinders[i], ray, abc);
-		t = get_cyl_t(&scene->cylinders[i], ray, abc);
-		if (t > 0.001 && (closest_t < 0 || t < closest_t))
+		t[0] = get_cyl_t(&scene->cylinders[i], ray, abc);
+		t[1] = intersect_caps(&scene->cylinders[i], ray);
+		if (t[1] > 0.001 && (t[0] < 0.001 || t[1] < t[0]))
+			t[0] = t[1];
+		if (t[0] > 0.001 && (closest_t < 0 || t[0] < closest_t))
 		{
-			closest_t = t;
-			update_cyl_hit(ray, scene, i, t);
+			closest_t = t[0];
+			update_cyl_hit(ray, scene, i, t[0]);
 		}
-		i++;
 	}
 	return (1);
 }

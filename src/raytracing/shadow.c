@@ -43,23 +43,33 @@ static void	calc_cyl_abc(t_ray *sh, t_cylinder *cyl, double *abc)
 		- ft_sqr(cyl->radius);
 }
 
-static int	check_shadow_cyl(t_ray *sh, t_scene *scene, double light_d)
+static int	check_shadow_cyl(t_ray *sh, t_scene *scene, double light_d,
+		int skip_idx)
 {
 	int		i;
 	double	abc[3];
 	double	delta;
-	double	t;
+	double	t[2];
 
 	i = -1;
 	while (++i < scene->cylinder_count)
 	{
+		if (i == skip_idx)
+			continue ;
+		t[0] = intersect_caps(&scene->cylinders[i], sh);
+		if (t[0] > 0.001 && t[0] < light_d)
+			return (1);
 		calc_cyl_abc(sh, &scene->cylinders[i], abc);
 		delta = abc[1] * abc[1] - 4 * abc[0] * abc[2];
 		if (delta < 0)
 			continue ;
-		t = (-abc[1] - sqrt(delta)) / (2 * abc[0]);
-		if (t > 0.001 && t < light_d
-			&& cyl_height_check(sh, &scene->cylinders[i], t))
+		t[0] = (-abc[1] - sqrt(delta)) / (2 * abc[0]);
+		t[1] = (-abc[1] + sqrt(delta)) / (2 * abc[0]);
+		if (t[0] > 0.001 && t[0] < light_d
+			&& cyl_height_check(sh, &scene->cylinders[i], t[0]))
+			return (1);
+		if (t[1] > 0.001 && t[1] < light_d
+			&& cyl_height_check(sh, &scene->cylinders[i], t[1]))
 			return (1);
 	}
 	return (0);
@@ -80,17 +90,21 @@ static void	init_shadow_ray(t_ray *shadow, t_vector point, t_scene *scene,
 	shadow->direction = vector_normalize(light_dir);
 }
 
-int	is_in_shadow(t_vector point, t_scene *scene)
+int	is_in_shadow(t_vector point, t_scene *scene, t_hit *hit)
 {
 	t_ray		shadow;
 	double		light_dist;
+	int			skip_idx;
 
 	init_shadow_ray(&shadow, point, scene, &light_dist);
+	skip_idx = -1;
+	if (hit->object_type == CYLINDER)
+		skip_idx = hit->id;
 	if (check_shadow_sphere(&shadow, scene, light_dist))
 		return (1);
 	if (check_shadow_plane(&shadow, scene, light_dist))
 		return (1);
-	if (check_shadow_cyl(&shadow, scene, light_dist))
+	if (check_shadow_cyl(&shadow, scene, light_dist, skip_idx))
 		return (1);
 	return (0);
 }

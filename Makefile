@@ -9,7 +9,7 @@ RED    = \033[31m
 NAME   = miniRT
 
 # Compiler / flags
-CC      = cc
+CC      = gcc
 CFLAGS  = -Wall -Wextra -Werror -g
 INCLUDES = -I./include -I./libft
 

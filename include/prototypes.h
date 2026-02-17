@@ -56,6 +56,7 @@ void		get_nearest_point(t_ray *ray, double *closest_t);
 int			intersec_spheres(t_ray *ray, t_scene *scene);
 int			intersec_planes(t_ray *ray, t_scene *scene);
 int			intersec_cylinders(t_ray *ray, t_scene *scene);
+double		intersect_caps(t_cylinder *cyl, t_ray *ray);
 int			init_mlx(t_scene *scene);
 void		mlx_cleanup(t_scene *scene);
 int			close_window(t_scene *scene);
@@ -77,7 +78,7 @@ void		reset_hit(t_hit *hit);
 int			is_perpendicular(t_vector v1, t_vector v2);
 double		ft_sqr(double x);
 t_vector	get_normal(t_ray *ray, t_scene *scene);
-int			is_in_shadow(t_vector point, t_scene *scene);
+int			is_in_shadow(t_vector point, t_scene *scene, t_hit *hit);
 int			check_shadow_sphere(t_ray *sh, t_scene *scene, double light_d);
 int			check_shadow_plane(t_ray *shadow, t_scene *scene, double light_d);
 

@@ -38,6 +38,10 @@ t_vector	get_cylinder_normal(t_vector inter, t_cylinder *cyl)
 	cp.y = inter.y - cyl->center.y;
 	cp.z = inter.z - cyl->center.z;
 	h = scalar_product(cp, cyl->axis);
+	if (fabs(h - cyl->height / 2) < 0.001)
+		return (cyl->axis);
+	if (fabs(h + cyl->height / 2) < 0.001)
+		return (vector_scale(cyl->axis, -1));
 	proj = vector_scale(cyl->axis, h);
 	normal.x = cp.x - proj.x;
 	normal.y = cp.y - proj.y;

@@ -49,8 +49,8 @@ int	raytracer(t_scene *scene, t_ray *ray)
 		return (0);
 	if (!init_viewport(scene))
 		return (0);
-	mlx_key_hook(scene->mlx_win, (int (*)())handle_key, scene);
-	mlx_hook(scene->mlx_win, 17, 0, (int (*)())close_window, scene);
+	mlx_key_hook(scene->mlx_win, (void *)handle_key, scene);
+	mlx_hook(scene->mlx_win, 17, 0, (void *)close_window, scene);
 	if (!parse_pixel(scene, ray))
 	{
 		close_window(scene);

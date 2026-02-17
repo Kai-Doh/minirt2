@@ -53,7 +53,7 @@ static t_color	apply_lighting(t_ray *ray, t_scene *scene)
 	normal = get_normal(ray, scene);
 	ambient = scene->ambient.ratio;
 	diffuse = 0;
-	if (!is_in_shadow(ray->hit.inter, scene))
+	if (!is_in_shadow(ray->hit.inter, scene, &ray->hit))
 		diffuse = calc_diffuse(ray, scene, normal);
 	result.r = obj_color.r * (ambient + diffuse);
 	result.g = obj_color.g * (ambient + diffuse);
