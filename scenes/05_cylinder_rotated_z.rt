@@ -1,0 +1,11 @@
+## EVAL: Translations and Rotations - Cylinder rotated 90 deg on Z
+## Cylinder originally along Y axis, rotated 90 degrees around Z axis
+## (so it now extends along X axis). Must render without glitching.
+
+A 0.2 255,255,255
+
+C 0,10,-60 0,0,1 70
+
+L -20,40,-30 0.7 255,255,255
+
+cy 0,0,0 1,0,0 10 40 255,255,0

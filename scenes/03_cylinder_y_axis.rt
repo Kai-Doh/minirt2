@@ -1,0 +1,10 @@
+## EVAL: Basic Shapes - Cylinder along Y axis
+## Cylinder extending along y axis, camera facing it. Must render without glitching.
+
+A 0.2 255,255,255
+
+C 0,10,-60 0,0,1 70
+
+L -20,40,-30 0.7 255,255,255
+
+cy 0,0,0 0,1,0 10 40 0,255,0

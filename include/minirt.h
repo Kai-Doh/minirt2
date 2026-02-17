@@ -13,7 +13,7 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# include "../mlx/minilibx_linux/mlx.h"
+# include "../mlx/minilibx-linux/mlx.h"
 //# include "../mlx/minilibx_linux/mlx_int.h"
 # include "../mlx/mlx_macOS/mlx.h"
 //# include "../mlx/minilibx_macOS/mlx_int.h"

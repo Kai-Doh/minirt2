@@ -1,0 +1,10 @@
+## EVAL: Basic Shapes - Plane with z value of null
+## Plane with z=0 normal, camera facing it. Must render without glitching.
+
+A 0.2 255,255,255
+
+C 0,0,-80 0,0,1 70
+
+L 0,30,-40 0.7 255,255,255
+
+pl 0,0,0 0,0,-1 120,120,200

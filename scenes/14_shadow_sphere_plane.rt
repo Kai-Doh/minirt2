@@ -1,0 +1,13 @@
+## EVAL: Brightness 2/2 - Shadow of sphere on plane
+## Vertical light above sphere, plane below. Camera from the side
+## to see the sphere, the plane, and the shadow on the plane.
+
+A 0.1 255,255,255
+
+C 60,30,-40 -0.768,-0.329,0.549 70
+
+L 0,60,0 0.9 255,255,255
+
+sp 0,10,0 15 255,0,0
+
+pl 0,-5,0 0,1,0 200,200,200

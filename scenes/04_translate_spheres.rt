@@ -1,0 +1,12 @@
+## EVAL: Translations and Rotations - Two spheres, one translated
+## Two spheres originally at same spot, one translated along z (parallel
+## to camera direction) by more than its diameter. Both must be visible.
+
+A 0.2 255,255,255
+
+C 0,0,-80 0,0,1 70
+
+L -30,40,-40 0.7 255,255,255
+
+sp 0,0,0 10 255,0,0
+sp 0,0,30 10 0,0,255

@@ -1,0 +1,13 @@
+## EVAL: Technical Elements of Display
+## Basic scene to test: window opens, stays open, ESC/red cross exits,
+## minimize/maximize keeps content, hiding/revealing keeps content.
+
+A 0.2 255,255,255
+
+C 0,20,-80 0,-0.1,1 70
+
+L -30,50,-30 0.7 255,255,255
+
+sp 0,0,0 15 255,100,100
+cy -25,0,20 0,1,0 8 25 100,255,100
+pl 0,-15,0 0,1,0 180,180,180

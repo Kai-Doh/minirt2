@@ -1,0 +1,16 @@
+## EVAL: Multi-objects - Multiple instances of same object type
+## Two cylinders, two spheres, and a plane. All must render correctly.
+
+A 0.2 255,255,255
+
+C 0,30,-100 0,-0.148,0.989 70
+
+L -40,60,-40 0.8 255,255,255
+
+sp -25,0,20 12 255,0,0
+sp 25,0,20 12 0,0,255
+
+cy -15,0,50 0,1,0 8 30 255,255,0
+cy 15,0,50 0,1,0 8 30 0,255,255
+
+pl 0,-12,0 0,1,0 150,150,150

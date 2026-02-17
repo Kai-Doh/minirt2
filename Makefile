@@ -6,7 +6,7 @@ YELLOW = \033[33m
 RED    = \033[31m
 
 # Executable
-NAME   = minirt
+NAME   = miniRT
 
 # Compiler / flags
 CC      = cc
@@ -33,11 +33,14 @@ ifeq ($(UNAME_S), Darwin)            # macOS
 	# Evite les warnings OpenGL déprécié sur macOS
 	CFLAGS   += -DGL_SILENCE_DEPRECATION
 else ifeq ($(UNAME_S), Linux)        # Linux
-	MLX_DIR   = $(MLX_ROOT)/minilibx_linux
+	MLX_DIR   = $(MLX_ROOT)/minilibx-linux
 	MLX_A     = $(MLX_DIR)/libmlx_Linux.a
 	MLX_INC   = -I$(MLX_DIR)
 	MLX_LNK   = -L$(MLX_DIR) -lmlx_Linux -lXext -lX11 -lm
-	CFLAGS   += -Wno-cast-function-type
+	# -Wno-cast-function-type is GCC-only; skip on clang
+	ifeq ($(shell $(CC) -dumpversion 2>/dev/null | grep -c '^'),1)
+		CFLAGS += $(shell $(CC) -Wno-bad-function-cast -x c -c /dev/null -o /dev/null 2>/dev/null && echo -Wno-bad-function-cast)
+	endif
 else                                  # Autre
 	$(error OS non supporté automatiquement. Ajuste MLX_DIR/flags.)
 endif
@@ -82,10 +85,10 @@ $(LIBFT_A):
 mlx: $(MLX_A)
 $(MLX_A):
 	@printf "$(BLUE)Building MiniLibX in $(MLX_DIR)...$(RESET)\n"
-	@$(MAKE) -C $(MLX_DIR) --no-print-directory > /dev/null || true
+	@$(MAKE) -C $(MLX_DIR) CC=gcc-11 --no-print-directory > /dev/null || true
 	@printf "$(GREEN)✓ MiniLibX ready (or already built).$(RESET)\n"
 
-$(NAME): libft mlx $(OBJS)
+$(NAME): $(LIBFT_A) $(MLX_A) $(OBJS)
 	@printf "$(BLUE)Linking $(NAME)...$(RESET)\n"
 	@$(CC) $(LDFLAGS) $(OBJS) $(LIBS) -o $(NAME)
 	@printf "$(GREEN)✓ $(NAME) created.$(RESET)\n"
