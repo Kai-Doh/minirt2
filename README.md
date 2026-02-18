@@ -13,15 +13,15 @@ The objective is to understand how a 3D scene can be mathematically represented 
 
 Our first raytracer handle the followings:
 * Ambient, diffuse and specular lightning (phong effect)
-* Multiple lights colors and intensity
+* Light color and intensity
 * Simple reflection (does not handle the light reflection)
 * Simple refraction (does not handle light source refraction nor inside objects... yet)
-* The followings primitive objects : Planes, Spheres, Cylinders, Cones(simple or doubles) and Triangles
+* The followings primitive objects : Planes, Spheres, Cylinders
+
+Possible upgrades coming in a near futur:
 * Anti-aliasing (optional)
 * Multi-threading (not allowed during the project, but added after)
 * Texture map and bump map (only with diffuse lightning, handling on ambient lightning needs to be done)
-
-Possible upgrades coming in a near futur:
 * Limit angle on refraction
 * Handling of objects inside transparent(refraction) ones
 * More primitive objects such as Torus, squares, cubes, pyramides, maybe?
@@ -34,7 +34,7 @@ The goal of the program is to generate images using the Raytracing protocol. Tho
 
 ## Preview
 
-![preview](imgs/Mastre_Ball.png)
+![preview](imgs/Master_Ball.png)
 ![preview](imgs/Blackhole.png)
 ![preview](imgs/Solar_System.png)
 
