@@ -49,7 +49,7 @@ t_bool		parse_color(char *str, t_color *color);
 
 /* ============ RAYTRACING ============ */
 double		radian_to_degree(double rad);
-double		degree_to_radian(int deg);
+double		degree_to_radian(double deg);
 int			ray_intersec(t_ray *ray, t_scene *scene);
 t_vector	point_value(t_ray *ray, double t);
 void		get_nearest_point(t_ray *ray, double *closest_t);
@@ -59,11 +59,13 @@ int			intersec_cylinders(t_ray *ray, t_scene *scene);
 double		intersect_caps(t_cylinder *cyl, t_ray *ray);
 int			init_mlx(t_scene *scene);
 void		mlx_cleanup(t_scene *scene);
+void		img_pixel_put(t_scene *scene, int x, int y, int color);
 int			close_window(t_scene *scene);
 int			handle_key(int keycode, t_scene *scene);
+int			handle_expose(t_scene *scene);
 t_vector	change_base_ray(t_vector v, t_scene *scene);
-int			parse_pixel(t_scene *scene, t_ray *ray);
-int			raytracer(t_scene *scene, t_ray *ray);
+int			render_pixel_step(t_scene *scene);
+int			raytracer(t_scene *scene);
 int			init_viewport(t_scene *scene);
 double		scalar_product(t_vector v1, t_vector v2);
 t_vector	vector_product(t_vector v1, t_vector v2);
@@ -81,5 +83,7 @@ t_vector	get_normal(t_ray *ray, t_scene *scene);
 int			is_in_shadow(t_vector point, t_scene *scene, t_hit *hit);
 int			check_shadow_sphere(t_ray *sh, t_scene *scene, double light_d);
 int			check_shadow_plane(t_ray *shadow, t_scene *scene, double light_d);
+int			cyl_height_check(t_ray *sh, t_cylinder *cyl, double t);
+void		calc_cyl_abc(t_ray *sh, t_cylinder *cyl, double *abc);
 
 #endif

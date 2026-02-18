@@ -1,11 +1,4 @@
-## EVAL: Brightness 1/2 - Sphere at origin lit sideways
-## Sphere at {0,0,0}, light placed to the right of the camera.
-## Sphere should show a bright side and a dark side.
-
 A 0.1 255,255,255
-
-C 0,0,-60 0,0,1 70
-
-L 50,0,-60 0.9 255,255,255
-
-sp 0,0,0 20 200,200,200
+C 0,0,-50 0,0,1 70
+L 40,0,0 0.8 255,255,255
+sp 0,0,0 40 255,0,0

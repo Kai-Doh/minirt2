@@ -136,18 +136,13 @@ typedef struct s_scene
 	int				cylinder_count;
 	void			*mlx;
 	void			*mlx_win;
+	void			*img;
+	char			*img_addr;
+	int				bpp;
+	int				line_len;
+	int				endian;
+	int				render_x;
+	t_ray			current_ray;
 }	t_scene;
-
-typedef struct s_data
-{
-	void	*mlx;
-	void	*window;
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
-	t_scene	scene;
-}	t_data;
 
 #endif

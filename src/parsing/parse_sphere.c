@@ -27,9 +27,10 @@ static t_bool	validate_sphere_params(char **tokens, t_sphere *sphere)
 	sphere->radius = parse_double(tokens[2]);
 	if (sphere->radius == -999999.0 || sphere->radius <= 0)
 	{
-		printf("Error\nSphere radius must be positive\n");
+		printf("Error\nSphere diameter must be positive\n");
 		return (FALSE);
 	}
+	sphere->radius /= 2.0;
 	if (!parse_color(tokens[3], &sphere->color))
 	{
 		printf("Error\nInvalid sphere color\n");

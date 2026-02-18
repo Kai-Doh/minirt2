@@ -24,9 +24,9 @@ t_bool	validate_scene(t_scene *scene)
 		printf("Error\nScene must have exactly 1 camera (C)\n");
 		return (FALSE);
 	}
-	if (scene->light_count < 1)
+	if (scene->light_count != 1)
 	{
-		printf("Error\nScene must have at least 1 light (L)\n");
+		printf("Error\nScene must have exactly 1 light (L)\n");
 		return (FALSE);
 	}
 	return (TRUE);

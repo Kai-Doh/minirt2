@@ -14,10 +14,10 @@
 
 double	radian_to_degree(double rad)
 {
-	return ((int)(rad * (180.0 / M_PI)));
+	return (rad * (180.0 / M_PI));
 }
 
-double	degree_to_radian(int deg)
+double	degree_to_radian(double deg)
 {
 	return ((double)(deg * (M_PI / 180.0)));
 }

@@ -44,6 +44,7 @@ t_bool	parse_cylinder_geometry(char **tokens, t_cylinder *cyl)
 		printf("Error\nCylinder dimensions must be positive\n");
 		return (FALSE);
 	}
+	cyl->radius /= 2.0;
 	return (TRUE);
 }
 

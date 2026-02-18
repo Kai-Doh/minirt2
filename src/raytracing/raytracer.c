@@ -41,7 +41,13 @@ t_vector	change_base_ray(t_vector v, t_scene *scene)
 	return (result);
 }
 
-int	raytracer(t_scene *scene, t_ray *ray)
+int	handle_expose(t_scene *scene)
+{
+	mlx_put_image_to_window(scene->mlx, scene->mlx_win, scene->img, 0, 0);
+	return (0);
+}
+
+int	raytracer(t_scene *scene)
 {
 	if (!init_mlx(scene))
 		return (0);
@@ -49,13 +55,11 @@ int	raytracer(t_scene *scene, t_ray *ray)
 		return (0);
 	if (!init_viewport(scene))
 		return (0);
+	scene->render_x = 0;
 	mlx_key_hook(scene->mlx_win, (void *)handle_key, scene);
 	mlx_hook(scene->mlx_win, 17, 0, (void *)close_window, scene);
-	if (!parse_pixel(scene, ray))
-	{
-		close_window(scene);
-		return (0);
-	}
+	mlx_expose_hook(scene->mlx_win, (void *)handle_expose, scene);
+	mlx_loop_hook(scene->mlx, (void *)render_pixel_step, scene);
 	mlx_loop(scene->mlx);
 	return (1);
 }

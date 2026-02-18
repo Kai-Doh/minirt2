@@ -51,6 +51,8 @@ static double	get_cyl_t(t_cylinder *cyl, t_ray *ray, double *abc)
 	double	t1;
 	double	t2;
 
+	if (fabs(abc[0]) < 1e-12)
+		return (-1);
 	delta = abc[1] * abc[1] - 4 * abc[0] * abc[2];
 	if (delta < 0)
 		return (-1);
@@ -86,7 +88,6 @@ int	intersec_cylinders(t_ray *ray, t_scene *scene)
 		closest_t = -1;
 	while (++i < scene->cylinder_count)
 	{
-		scene->cylinders[i].axis = vector_normalize(scene->cylinders[i].axis);
 		get_cylinder_abc(&scene->cylinders[i], ray, abc);
 		t[0] = get_cyl_t(&scene->cylinders[i], ray, abc);
 		t[1] = intersect_caps(&scene->cylinders[i], ray);

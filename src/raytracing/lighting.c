@@ -64,5 +64,7 @@ t_vector	get_normal(t_ray *ray, t_scene *scene)
 		normal = get_plane_normal(&scene->planes[id]);
 	else if (ray->hit.object_type == CYLINDER)
 		normal = get_cylinder_normal(inter, &scene->cylinders[id]);
+	if (scalar_product(normal, ray->direction) > 0)
+		normal = vector_scale(normal, -1);
 	return (normal);
 }

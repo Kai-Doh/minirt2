@@ -25,6 +25,8 @@ void	init_scene(t_scene *scene)
 	scene->cylinder_count = 0;
 	scene->mlx = NULL;
 	scene->mlx_win = NULL;
+	scene->img = NULL;
+	scene->img_addr = NULL;
 }
 
 void	cleanup_scene(t_scene *scene)

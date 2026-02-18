@@ -12,10 +12,24 @@
 
 #include "../../include/minirt.h"
 
+static int	create_image(t_scene *scene)
+{
+	scene->img = mlx_new_image(scene->mlx, WIDTH, HEIGHT);
+	if (!scene->img)
+		return (0);
+	scene->img_addr = mlx_get_data_addr(scene->img,
+			&scene->bpp, &scene->line_len, &scene->endian);
+	if (!scene->img_addr)
+		return (0);
+	return (1);
+}
+
 #ifdef __linux__
 
 void	mlx_cleanup(t_scene *scene)
 {
+	if (scene->img)
+		mlx_destroy_image(scene->mlx, scene->img);
 	if (scene->mlx)
 	{
 		mlx_destroy_display(scene->mlx);
@@ -34,6 +48,13 @@ int	init_mlx(t_scene *scene)
 		mlx_destroy_display(scene->mlx);
 		free(scene->mlx);
 		return (printf("Error\nImpossible to create window\n"), 0);
+	}
+	if (!create_image(scene))
+	{
+		mlx_destroy_window(scene->mlx, scene->mlx_win);
+		mlx_destroy_display(scene->mlx);
+		free(scene->mlx);
+		return (printf("Error\nImpossible to create image\n"), 0);
 	}
 	return (1);
 }
@@ -42,6 +63,8 @@ int	init_mlx(t_scene *scene)
 
 void	mlx_cleanup(t_scene *scene)
 {
+	if (scene->img)
+		mlx_destroy_image(scene->mlx, scene->img);
 	if (scene->mlx)
 		free(scene->mlx);
 }
@@ -56,6 +79,12 @@ int	init_mlx(t_scene *scene)
 	{
 		free(scene->mlx);
 		return (printf("Error\nImpossible to create window\n"), 0);
+	}
+	if (!create_image(scene))
+	{
+		mlx_destroy_window(scene->mlx, scene->mlx_win);
+		free(scene->mlx);
+		return (printf("Error\nImpossible to create image\n"), 0);
 	}
 	return (1);
 }

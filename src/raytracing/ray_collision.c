@@ -41,6 +41,23 @@ static double	calc_diffuse(t_ray *ray, t_scene *scene, t_vector normal)
 	return (n_dot_l * scene->light.brightness);
 }
 
+static t_color	clamp_color(t_color c)
+{
+	if (c.r < 0)
+		c.r = 0;
+	if (c.g < 0)
+		c.g = 0;
+	if (c.b < 0)
+		c.b = 0;
+	if (c.r > 255)
+		c.r = 255;
+	if (c.g > 255)
+		c.g = 255;
+	if (c.b > 255)
+		c.b = 255;
+	return (c);
+}
+
 static t_color	apply_lighting(t_ray *ray, t_scene *scene)
 {
 	t_color		obj_color;
@@ -55,16 +72,13 @@ static t_color	apply_lighting(t_ray *ray, t_scene *scene)
 	diffuse = 0;
 	if (!is_in_shadow(ray->hit.inter, scene, &ray->hit))
 		diffuse = calc_diffuse(ray, scene, normal);
-	result.r = obj_color.r * (ambient + diffuse);
-	result.g = obj_color.g * (ambient + diffuse);
-	result.b = obj_color.b * (ambient + diffuse);
-	if (result.r > 255)
-		result.r = 255;
-	if (result.g > 255)
-		result.g = 255;
-	if (result.b > 255)
-		result.b = 255;
-	return (result);
+	result.r = obj_color.r * (ambient * scene->ambient.color.r / 255.0
+			+ diffuse);
+	result.g = obj_color.g * (ambient * scene->ambient.color.g / 255.0
+			+ diffuse);
+	result.b = obj_color.b * (ambient * scene->ambient.color.b / 255.0
+			+ diffuse);
+	return (clamp_color(result));
 }
 
 int	ray_intersec(t_ray *ray, t_scene *scene)
@@ -79,11 +93,9 @@ int	ray_intersec(t_ray *ray, t_scene *scene)
 	{
 		rgb = apply_lighting(ray, scene);
 		color = rgb_to_int(rgb);
-		mlx_pixel_put(scene->mlx, scene->mlx_win, ray->pixel_x,
-			ray->pixel_y, color);
+		img_pixel_put(scene, ray->pixel_x, ray->pixel_y, color);
 		return (1);
 	}
-	mlx_pixel_put(scene->mlx, scene->mlx_win, ray->pixel_x,
-		ray->pixel_y, 0x000000);
+	img_pixel_put(scene, ray->pixel_x, ray->pixel_y, 0x000000);
 	return (1);
 }

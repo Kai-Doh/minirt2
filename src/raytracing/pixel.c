@@ -26,26 +26,32 @@ static void	calc_ray_dir(t_scene *scene, t_ray *ray, int x, int y)
 	ray->direction = vector_normalize(change_base_ray(dir_cam, scene));
 }
 
-int	parse_pixel(t_scene *scene, t_ray *ray)
+static void	render_one_column(t_scene *s, int x)
 {
-	int	x;
 	int	y;
 
-	x = 0;
-	while (x < WIDTH)
+	y = 0;
+	while (y < HEIGHT)
 	{
-		y = 0;
-		while (y < HEIGHT)
-		{
-			ray->origin = scene->camera.position;
-			calc_ray_dir(scene, ray, x, y);
-			ray->pixel_x = x;
-			ray->pixel_y = y;
-			init_ray(ray, scene->camera.position, ray->direction);
-			ray_intersec(ray, scene);
-			y++;
-		}
-		x++;
+		s->current_ray.origin = s->camera.position;
+		calc_ray_dir(s, &s->current_ray, x, y);
+		s->current_ray.pixel_x = x;
+		s->current_ray.pixel_y = y;
+		init_ray(&s->current_ray, s->camera.position,
+			s->current_ray.direction);
+		ray_intersec(&s->current_ray, s);
+		y++;
 	}
-	return (1);
+}
+
+int	render_pixel_step(t_scene *scene)
+{
+	if (scene->render_x >= WIDTH)
+		return (0);
+	render_one_column(scene, scene->render_x);
+	scene->render_x++;
+	if (scene->render_x >= WIDTH)
+		mlx_put_image_to_window(scene->mlx, scene->mlx_win,
+			scene->img, 0, 0);
+	return (0);
 }

@@ -16,3 +16,13 @@ int	rgb_to_int(t_color color)
 {
 	return (((int)color.r << 16) | ((int)color.g << 8) | (int)color.b);
 }
+
+void	img_pixel_put(t_scene *scene, int x, int y, int color)
+{
+	char	*dst;
+
+	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
+		return ;
+	dst = scene->img_addr + (y * scene->line_len + x * (scene->bpp / 8));
+	*(unsigned int *)dst = color;
+}

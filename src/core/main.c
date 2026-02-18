@@ -15,7 +15,6 @@
 int	main(int ac, char **av)
 {
 	t_scene	scene;
-	t_ray	ray;
 
 	if (!arg_check(ac, av))
 		return (1);
@@ -31,7 +30,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	print_scene_summary(&scene);
-	if (!raytracer(&scene, &ray))
+	if (!raytracer(&scene))
 	{
 		cleanup_scene(&scene);
 		return (1);
