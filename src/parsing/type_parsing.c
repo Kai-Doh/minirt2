@@ -12,6 +12,7 @@
 
 #include "../../include/minirt.h"
 
+/* Parses a comma-separated string into a t_vector */
 t_bool	parse_vector(char *str, t_vector *vec)
 {
 	char	**split;
@@ -33,6 +34,7 @@ t_bool	parse_vector(char *str, t_vector *vec)
 	return (TRUE);
 }
 
+/* Checks that r, g, b components are in [0,255] */
 static t_bool	validate_color_values(double r, double g, double b)
 {
 	if (r == -999999.0 || g == -999999.0 || b == -999999.0)
@@ -42,6 +44,7 @@ static t_bool	validate_color_values(double r, double g, double b)
 	return (TRUE);
 }
 
+/* Splits color string and parses r, g, b values */
 static t_bool	parse_color_components(char *str, double *r, double *g,
 		double *b)
 {
@@ -65,6 +68,7 @@ static t_bool	parse_color_components(char *str, double *r, double *g,
 	return (TRUE);
 }
 
+/* Parses a comma-separated string into a t_color */
 t_bool	parse_color(char *str, t_color *color)
 {
 	double	r;

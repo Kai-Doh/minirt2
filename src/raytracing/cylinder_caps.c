@@ -12,6 +12,7 @@
 
 #include "../../include/minirt.h"
 
+/* Returns center position of a cylinder end cap */
 static t_vector	get_cap_center(t_cylinder *cyl, double sign)
 {
 	t_vector	cap;
@@ -22,6 +23,7 @@ static t_vector	get_cap_center(t_cylinder *cyl, double sign)
 	return (cap);
 }
 
+/* Returns intersection t for one cylinder cap disk */
 static double	hit_single_cap(t_cylinder *cyl, t_ray *ray, double sign)
 {
 	t_vector	cap;
@@ -49,6 +51,7 @@ static double	hit_single_cap(t_cylinder *cyl, t_ray *ray, double sign)
 	return (-1);
 }
 
+/* Returns the nearest ray-cap intersection distance */
 double	intersect_caps(t_cylinder *cyl, t_ray *ray)
 {
 	double	t_top;

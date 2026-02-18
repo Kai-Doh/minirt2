@@ -12,6 +12,7 @@
 
 #include "../../include/minirt.h"
 
+/* Destroys window and exits the program */
 int	close_window(t_scene *scene)
 {
 	if (scene->mlx_win)
@@ -22,6 +23,7 @@ int	close_window(t_scene *scene)
 	return (0);
 }
 
+/* Closes window on Escape key press */
 int	handle_key(int keycode, t_scene *scene)
 {
 	if (keycode == 65307 || keycode == 53)
@@ -29,6 +31,7 @@ int	handle_key(int keycode, t_scene *scene)
 	return (0);
 }
 
+/* Transforms a vector from camera to world space */
 t_vector	change_base_ray(t_vector v, t_scene *scene)
 {
 	t_vector	result;
@@ -41,12 +44,14 @@ t_vector	change_base_ray(t_vector v, t_scene *scene)
 	return (result);
 }
 
+/* Redraws image to window on expose event */
 int	handle_expose(t_scene *scene)
 {
 	mlx_put_image_to_window(scene->mlx, scene->mlx_win, scene->img, 0, 0);
 	return (0);
 }
 
+/* Initializes MLX and starts the render loop */
 int	raytracer(t_scene *scene)
 {
 	if (!init_mlx(scene))

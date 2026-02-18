@@ -12,6 +12,7 @@
 
 #include "../../include/minirt.h"
 
+/* Tests all spheres for shadow occlusion */
 int	check_shadow_sphere(t_ray *sh, t_scene *scene, double light_d)
 {
 	int			i;
@@ -39,6 +40,7 @@ int	check_shadow_sphere(t_ray *sh, t_scene *scene, double light_d)
 	return (0);
 }
 
+/* Checks if shadow ray hits within cylinder height */
 int	cyl_height_check(t_ray *sh, t_cylinder *cyl, double t)
 {
 	t_vector	p;
@@ -55,6 +57,7 @@ int	cyl_height_check(t_ray *sh, t_cylinder *cyl, double t)
 	return (h >= -cyl->height / 2 && h <= cyl->height / 2);
 }
 
+/* Computes cylinder shadow ray equation coefficients */
 void	calc_cyl_abc(t_ray *sh, t_cylinder *cyl, double *abc)
 {
 	t_vector	oc;
@@ -70,6 +73,7 @@ void	calc_cyl_abc(t_ray *sh, t_cylinder *cyl, double *abc)
 		- ft_sqr(cyl->radius);
 }
 
+/* Tests all planes for shadow occlusion */
 int	check_shadow_plane(t_ray *shadow, t_scene *scene, double light_d)
 {
 	int		i;

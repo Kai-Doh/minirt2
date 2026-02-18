@@ -12,6 +12,7 @@
 
 #include "../../include/minirt.h"
 
+/* Initializes world basis vectors (forward/right/up) */
 int	init_base_world(t_base_world *base)
 {
 	base->forward = (t_vector){0, 0, 1};
@@ -20,6 +21,7 @@ int	init_base_world(t_base_world *base)
 	return (1);
 }
 
+/* Returns 1 if forward vector is parallel to world up */
 static int	is_parallel_up(t_vector forward)
 {
 	double	dot;
@@ -30,6 +32,7 @@ static int	is_parallel_up(t_vector forward)
 	return (0);
 }
 
+/* Builds camera right and up vectors from forward */
 int	make_base_cam(t_scene *scene)
 {
 	t_vector	world_up;
@@ -45,6 +48,7 @@ int	make_base_cam(t_scene *scene)
 	return (1);
 }
 
+/* Sets up the complete camera orientation basis */
 int	make_orientation_cam(t_scene *scene)
 {
 	init_base_world(&scene->base_world);

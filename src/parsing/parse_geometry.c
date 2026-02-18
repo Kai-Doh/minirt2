@@ -12,6 +12,7 @@
 
 #include "../../include/minirt.h"
 
+/* Validates plane point, normal and color tokens */
 static t_bool	validate_plane_params(char **tokens, t_plane *plane)
 {
 	if (!tokens[1] || !tokens[2] || !tokens[3] || tokens[4])
@@ -34,6 +35,7 @@ static t_bool	validate_plane_params(char **tokens, t_plane *plane)
 	return (TRUE);
 }
 
+/* Allocates a plane and parses its token into scene */
 t_bool	parse_plane(char **tokens, t_scene *scene)
 {
 	t_plane	*new_planes;
@@ -56,6 +58,7 @@ t_bool	parse_plane(char **tokens, t_scene *scene)
 	return (TRUE);
 }
 
+/* Validates all cylinder token parameters */
 static t_bool	validate_cylinder_params(char **tokens, t_cylinder *cyl)
 {
 	if (!check_cylinder_token_count(tokens))
@@ -70,6 +73,7 @@ static t_bool	validate_cylinder_params(char **tokens, t_cylinder *cyl)
 	return (TRUE);
 }
 
+/* Allocates a cylinder and parses its token into scene */
 t_bool	parse_cylinder(char **tokens, t_scene *scene)
 {
 	t_cylinder	*cylinder;

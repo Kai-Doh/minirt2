@@ -12,6 +12,7 @@
 
 #include "../../include/minirt.h"
 
+/* Creates an MLX image and gets its data address */
 static int	create_image(t_scene *scene)
 {
 	scene->img = mlx_new_image(scene->mlx, WIDTH, HEIGHT);
@@ -26,6 +27,7 @@ static int	create_image(t_scene *scene)
 
 #ifdef __linux__
 
+/* Destroys MLX image, display and frees memory */
 void	mlx_cleanup(t_scene *scene)
 {
 	if (scene->img)
@@ -37,6 +39,7 @@ void	mlx_cleanup(t_scene *scene)
 	}
 }
 
+/* Initializes MLX, window, and image on Linux */
 int	init_mlx(t_scene *scene)
 {
 	scene->mlx = mlx_init();
@@ -61,6 +64,7 @@ int	init_mlx(t_scene *scene)
 
 #else
 
+/* Destroys MLX image and frees the MLX pointer */
 void	mlx_cleanup(t_scene *scene)
 {
 	if (scene->img)
@@ -69,6 +73,7 @@ void	mlx_cleanup(t_scene *scene)
 		free(scene->mlx);
 }
 
+/* Initializes MLX, window, and image on macOS */
 int	init_mlx(t_scene *scene)
 {
 	scene->mlx = mlx_init();

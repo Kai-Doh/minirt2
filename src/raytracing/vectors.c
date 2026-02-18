@@ -12,11 +12,13 @@
 
 #include "../../include/minirt.h"
 
+/* Returns the dot product of two vectors */
 double	scalar_product(t_vector v1, t_vector v2)
 {
 	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
 }
 
+/* Returns the cross product of two vectors */
 t_vector	vector_product(t_vector v1, t_vector v2)
 {
 	t_vector	result;
@@ -27,11 +29,13 @@ t_vector	vector_product(t_vector v1, t_vector v2)
 	return (result);
 }
 
+/* Returns the Euclidean length of a vector */
 double	vector_norm(t_vector v)
 {
 	return (sqrt(v.x * v.x + v.y * v.y + v.z * v.z));
 }
 
+/* Returns vector scaled by a scalar factor */
 t_vector	vector_scale(t_vector v, double n)
 {
 	t_vector	result;
@@ -42,6 +46,7 @@ t_vector	vector_scale(t_vector v, double n)
 	return (result);
 }
 
+/* Returns a unit-length version of a vector */
 t_vector	vector_normalize(t_vector v)
 {
 	double		norm_sqrt;

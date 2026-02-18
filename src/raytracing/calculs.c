@@ -12,11 +12,13 @@
 
 #include "../../include/minirt.h"
 
+/* Converts a radian angle value to degrees */
 double	radian_to_degree(double rad)
 {
 	return (rad * (180.0 / M_PI));
 }
 
+/* Converts a degree angle value to radians */
 double	degree_to_radian(double deg)
 {
 	return ((double)(deg * (M_PI / 180.0)));

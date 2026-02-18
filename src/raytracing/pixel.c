@@ -12,6 +12,7 @@
 
 #include "../../include/minirt.h"
 
+/* Computes normalized ray direction for pixel (x,y) */
 static void	calc_ray_dir(t_scene *scene, t_ray *ray, int x, int y)
 {
 	double		u;
@@ -26,6 +27,7 @@ static void	calc_ray_dir(t_scene *scene, t_ray *ray, int x, int y)
 	ray->direction = vector_normalize(change_base_ray(dir_cam, scene));
 }
 
+/* Renders all pixels in a single vertical column */
 static void	render_one_column(t_scene *s, int x)
 {
 	int	y;
@@ -44,6 +46,7 @@ static void	render_one_column(t_scene *s, int x)
 	}
 }
 
+/* Renders one column per MLX loop iteration */
 int	render_pixel_step(t_scene *scene)
 {
 	if (scene->render_x >= WIDTH)

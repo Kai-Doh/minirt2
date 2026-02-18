@@ -12,11 +12,13 @@
 
 #include "../../include/minirt.h"
 
+/* Converts a t_color to a packed 32-bit integer */
 int	rgb_to_int(t_color color)
 {
 	return (((int)color.r << 16) | ((int)color.g << 8) | (int)color.b);
 }
 
+/* Writes a color value to the image buffer */
 void	img_pixel_put(t_scene *scene, int x, int y, int color)
 {
 	char	*dst;

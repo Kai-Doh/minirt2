@@ -12,6 +12,7 @@
 
 #include "../../include/minirt.h"
 
+/* Returns the point on a ray at parameter t */
 t_vector	point_value(t_ray *ray, double t)
 {
 	t_vector	point;
@@ -22,6 +23,7 @@ t_vector	point_value(t_ray *ray, double t)
 	return (point);
 }
 
+/* Returns the nearest positive intersection t */
 static double	get_sphere_t(double a, double b, double discr)
 {
 	double	t1;
@@ -42,6 +44,7 @@ static double	get_sphere_t(double a, double b, double discr)
 	return (-1);
 }
 
+/* Computes sphere intersection discriminant */
 static double	calc_sphere_discr(t_sphere *sp, t_ray *ray, double *abc)
 {
 	double	ox;
@@ -59,6 +62,7 @@ static double	calc_sphere_discr(t_sphere *sp, t_ray *ray, double *abc)
 	return (abc[1] * abc[1] - 4 * abc[0] * abc[2]);
 }
 
+/* Updates ray hit data for a sphere intersection */
 static void	update_sphere_hit(t_ray *ray, t_scene *scene, int i, double t)
 {
 	ray->hit.hit = TRUE;
@@ -69,6 +73,7 @@ static void	update_sphere_hit(t_ray *ray, t_scene *scene, int i, double t)
 	ray->hit.delta = t;
 }
 
+/* Finds nearest sphere intersected by the ray */
 int	intersec_spheres(t_ray *ray, t_scene *scene)
 {
 	int		i;

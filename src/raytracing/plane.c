@@ -12,6 +12,7 @@
 
 #include "../../include/minirt.h"
 
+/* Computes the D constant of the plane equation */
 static double	value_d(t_vector n, t_vector p)
 {
 	double	result;
@@ -20,6 +21,7 @@ static double	value_d(t_vector n, t_vector p)
 	return (result);
 }
 
+/* Returns the ray-plane intersection distance t */
 static double	calc_plane_t(t_plane *plane, t_ray *ray)
 {
 	double	num;
@@ -34,6 +36,7 @@ static double	calc_plane_t(t_plane *plane, t_ray *ray)
 	return (-num / den);
 }
 
+/* Finds the nearest plane intersected by the ray */
 int	intersec_planes(t_ray *ray, t_scene *scene)
 {
 	int		i;

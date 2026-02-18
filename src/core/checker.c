@@ -12,6 +12,7 @@
 
 #include "../../include/minirt.h"
 
+/* Checks if filename ends with .rt extension */
 static t_bool	check_rt_extension(char *filename)
 {
 	int	len;
@@ -22,6 +23,7 @@ static t_bool	check_rt_extension(char *filename)
 	return (ft_strncmp(filename + len - 3, ".rt", 3) == 0);
 }
 
+/* Validates argument count and .rt file extension */
 t_bool	arg_check(int ac, char **av)
 {
 	if (ac < 2)

@@ -12,6 +12,7 @@
 
 #include "../../include/minirt.h"
 
+/* Computes viewport dimensions from camera FOV */
 int	init_viewport(t_scene *scene)
 {
 	double	ratio_asp;

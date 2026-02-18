@@ -12,6 +12,7 @@
 
 #include "../../include/minirt.h"
 
+/* Checks scene has exactly one A, C and L element */
 t_bool	validate_scene(t_scene *scene)
 {
 	if (scene->ambient_count != 1)

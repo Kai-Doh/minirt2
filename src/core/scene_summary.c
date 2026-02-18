@@ -12,6 +12,7 @@
 
 #include "../../include/minirt.h"
 
+/* Prints sphere and plane info to standard output */
 static void	print_objects(t_scene *scene)
 {
 	int	i;
@@ -37,6 +38,7 @@ static void	print_objects(t_scene *scene)
 	}
 }
 
+/* Prints cylinder info to standard output */
 static void	print_cylinders(t_scene *scene)
 {
 	int	i;
@@ -53,6 +55,7 @@ static void	print_cylinders(t_scene *scene)
 	}
 }
 
+/* Prints a full summary of all scene elements */
 void	print_scene_summary(t_scene *scene)
 {
 	printf("\n=== SCENE LOADED SUCCESSFULLY ===\n");

@@ -12,6 +12,7 @@
 
 #include "../../include/minirt.h"
 
+/* Sets all scene fields to zero or NULL */
 void	init_scene(t_scene *scene)
 {
 	scene->spheres = NULL;
@@ -29,6 +30,7 @@ void	init_scene(t_scene *scene)
 	scene->img_addr = NULL;
 }
 
+/* Frees scene object arrays and resets counters */
 void	cleanup_scene(t_scene *scene)
 {
 	if (scene->spheres)

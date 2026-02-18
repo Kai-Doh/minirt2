@@ -12,6 +12,7 @@
 
 #include "../../include/minirt.h"
 
+/* Parses ambient lighting token into scene */
 t_bool	parse_ambient(char **tokens, t_scene *scene)
 {
 	if (!tokens[1] || !tokens[2] || tokens[3])
@@ -35,6 +36,7 @@ t_bool	parse_ambient(char **tokens, t_scene *scene)
 	return (TRUE);
 }
 
+/* Validates light token parameter count and values */
 static t_bool	validate_light_params(char **tokens, t_scene *scene)
 {
 	if (!tokens[1] || !tokens[2] || !tokens[3] || tokens[4])
@@ -62,6 +64,7 @@ static t_bool	validate_light_params(char **tokens, t_scene *scene)
 	return (TRUE);
 }
 
+/* Parses light source token into scene */
 t_bool	parse_light(char **tokens, t_scene *scene)
 {
 	if (!validate_light_params(tokens, scene))

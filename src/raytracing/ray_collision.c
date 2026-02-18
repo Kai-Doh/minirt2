@@ -12,6 +12,7 @@
 
 #include "../../include/minirt.h"
 
+/* Returns the base color of the intersected object */
 static t_color	get_obj_color(t_ray *ray, t_scene *scene)
 {
 	t_color	rgb;
@@ -26,6 +27,7 @@ static t_color	get_obj_color(t_ray *ray, t_scene *scene)
 	return (rgb);
 }
 
+/* Calculates diffuse lighting from point light */
 static double	calc_diffuse(t_ray *ray, t_scene *scene, t_vector normal)
 {
 	t_vector	light_dir;
@@ -41,6 +43,7 @@ static double	calc_diffuse(t_ray *ray, t_scene *scene, t_vector normal)
 	return (n_dot_l * scene->light.brightness);
 }
 
+/* Clamps all color channels to the [0,255] range */
 static t_color	clamp_color(t_color c)
 {
 	if (c.r < 0)
@@ -58,6 +61,7 @@ static t_color	clamp_color(t_color c)
 	return (c);
 }
 
+/* Applies ambient and diffuse lighting to a hit */
 static t_color	apply_lighting(t_ray *ray, t_scene *scene)
 {
 	t_color		obj_color;
@@ -81,6 +85,7 @@ static t_color	apply_lighting(t_ray *ray, t_scene *scene)
 	return (clamp_color(result));
 }
 
+/* Tests ray intersections and writes pixel color */
 int	ray_intersec(t_ray *ray, t_scene *scene)
 {
 	t_color	rgb;

@@ -12,6 +12,7 @@
 
 #include "../../include/minirt.h"
 
+/* Tests if a specific cylinder casts shadow on ray */
 static int	test_one_cyl(t_ray *sh, t_cylinder *cyl, double light_d)
 {
 	double	abc[3];
@@ -36,6 +37,7 @@ static int	test_one_cyl(t_ray *sh, t_cylinder *cyl, double light_d)
 	return (0);
 }
 
+/* Tests all cylinders for shadow occlusion */
 static int	check_shadow_cyl(t_ray *sh, t_scene *scene, double light_d,
 		int skip_idx)
 {
@@ -52,6 +54,7 @@ static int	check_shadow_cyl(t_ray *sh, t_scene *scene, double light_d,
 	return (0);
 }
 
+/* Initializes shadow ray from hit point toward light */
 static void	init_shadow_ray(t_ray *shadow, t_vector point, t_scene *scene,
 		double *light_dist)
 {
@@ -72,6 +75,7 @@ static void	init_shadow_ray(t_ray *shadow, t_vector point, t_scene *scene,
 	shadow->direction = vector_normalize(light_dir);
 }
 
+/* Returns 1 if point is occluded from the light */
 int	is_in_shadow(t_vector point, t_scene *scene, t_hit *hit)
 {
 	t_ray		shadow;

@@ -12,6 +12,7 @@
 
 #include "../../include/minirt.h"
 
+/* Checks cylinder token has exactly 5 parameters */
 t_bool	check_cylinder_token_count(char **tokens)
 {
 	if (!tokens[1] || !tokens[2] || !tokens[3]
@@ -23,6 +24,7 @@ t_bool	check_cylinder_token_count(char **tokens)
 	return (TRUE);
 }
 
+/* Parses cylinder center, axis, radius and height */
 t_bool	parse_cylinder_geometry(char **tokens, t_cylinder *cyl)
 {
 	if (!parse_vector(tokens[1], &cyl->center)
@@ -48,6 +50,7 @@ t_bool	parse_cylinder_geometry(char **tokens, t_cylinder *cyl)
 	return (TRUE);
 }
 
+/* Reallocates cylinder array and returns new entry */
 t_cylinder	*allocate_cylinder(t_scene *scene)
 {
 	t_cylinder	*new_cylinders;

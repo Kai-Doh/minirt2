@@ -12,6 +12,7 @@
 
 #include "../../include/minirt.h"
 
+/* Resets all hit fields to their default values */
 void	reset_hit(t_hit *hit)
 {
 	hit->inter = (t_vector){0.0, 0.0, 0.0};
@@ -22,6 +23,7 @@ void	reset_hit(t_hit *hit)
 	hit->hit = FALSE;
 }
 
+/* Initializes ray origin, direction and hit data */
 void	init_ray(t_ray *ray, t_vector origin, t_vector direction)
 {
 	ray->origin = origin;

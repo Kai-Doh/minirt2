@@ -12,6 +12,7 @@
 
 #include "../../include/minirt.h"
 
+/* Routes token to the appropriate parser function */
 t_bool	identify_element(char **tokens, char *line, t_scene *scene)
 {
 	(void)line;
@@ -34,6 +35,7 @@ t_bool	identify_element(char **tokens, char *line, t_scene *scene)
 	}
 }
 
+/* Splits a scene file line and dispatches to parser */
 t_bool	parse_line(char *line, t_scene *scene)
 {
 	char	**tokens;
@@ -55,6 +57,7 @@ t_bool	parse_line(char *line, t_scene *scene)
 	return (result);
 }
 
+/* Reads and parses all non-empty lines from file */
 t_bool	process_lines(int fd, t_scene *scene)
 {
 	char	*line;
@@ -80,6 +83,7 @@ t_bool	process_lines(int fd, t_scene *scene)
 	return (TRUE);
 }
 
+/* Opens scene file and processes all its lines */
 t_bool	parse_scene(char *filename, t_scene *scene)
 {
 	int	fd;

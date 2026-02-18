@@ -12,6 +12,7 @@
 
 #include "../../include/minirt.h"
 
+/* Validates and normalizes a direction vector */
 t_bool	is_normalized_vector(t_vector *vec)
 {
 	double	magnitude;

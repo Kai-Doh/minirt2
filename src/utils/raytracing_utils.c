@@ -12,6 +12,7 @@
 
 #include "../../include/minirt.h"
 
+/* Returns 1 if two vectors are perpendicular */
 int	is_perpendicular(t_vector v1, t_vector v2)
 {
 	if (scalar_product(v1, v2) == 0)
@@ -19,6 +20,7 @@ int	is_perpendicular(t_vector v1, t_vector v2)
 	return (0);
 }
 
+/* Returns the square of a double value */
 double	ft_sqr(double x)
 {
 	return (x * x);

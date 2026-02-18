@@ -12,6 +12,7 @@
 
 #include "../../include/minirt.h"
 
+/* Validates camera position and orientation vectors */
 static t_bool	validate_camera_vectors(char **tokens, t_scene *scene)
 {
 	if (!parse_vector(tokens[1], &scene->camera.position))
@@ -32,6 +33,7 @@ static t_bool	validate_camera_vectors(char **tokens, t_scene *scene)
 	return (TRUE);
 }
 
+/* Validates all camera token parameters and FOV */
 static t_bool	validate_camera_params(char **tokens, t_scene *scene)
 {
 	if (!tokens[1] || !tokens[2] || !tokens[3] || tokens[4])
@@ -51,6 +53,7 @@ static t_bool	validate_camera_params(char **tokens, t_scene *scene)
 	return (TRUE);
 }
 
+/* Parses camera token and stores it in scene */
 t_bool	parse_camera(char **tokens, t_scene *scene)
 {
 	if (!validate_camera_params(tokens, scene))

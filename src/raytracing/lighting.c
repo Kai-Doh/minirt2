@@ -12,6 +12,7 @@
 
 #include "../../include/minirt.h"
 
+/* Returns surface normal at a sphere hit point */
 t_vector	get_sphere_normal(t_vector inter, t_sphere *sphere)
 {
 	t_vector	normal;
@@ -22,11 +23,13 @@ t_vector	get_sphere_normal(t_vector inter, t_sphere *sphere)
 	return (vector_normalize(normal));
 }
 
+/* Returns the normalized normal of a plane */
 t_vector	get_plane_normal(t_plane *plane)
 {
 	return (vector_normalize(plane->normal));
 }
 
+/* Returns surface normal at a cylinder hit point */
 t_vector	get_cylinder_normal(t_vector inter, t_cylinder *cyl)
 {
 	t_vector	cp;
@@ -49,6 +52,7 @@ t_vector	get_cylinder_normal(t_vector inter, t_cylinder *cyl)
 	return (vector_normalize(normal));
 }
 
+/* Returns the surface normal for the hit object */
 t_vector	get_normal(t_ray *ray, t_scene *scene)
 {
 	t_vector	normal;

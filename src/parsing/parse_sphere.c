@@ -12,6 +12,7 @@
 
 #include "../../include/minirt.h"
 
+/* Validates sphere center, radius and color tokens */
 static t_bool	validate_sphere_params(char **tokens, t_sphere *sphere)
 {
 	if (!tokens[1] || !tokens[2] || !tokens[3] || tokens[4])
@@ -39,6 +40,7 @@ static t_bool	validate_sphere_params(char **tokens, t_sphere *sphere)
 	return (TRUE);
 }
 
+/* Allocates a sphere and parses its token into scene */
 t_bool	parse_sphere(char **tokens, t_scene *scene)
 {
 	t_sphere	*new_spheres;

@@ -12,6 +12,7 @@
 
 #include "../../include/minirt.h"
 
+/* Computes cylinder intersection equation coefficients */
 static void	get_cylinder_abc(t_cylinder *cyl, t_ray *ray, double *abc)
 {
 	t_vector	oc;
@@ -29,6 +30,7 @@ static void	get_cylinder_abc(t_cylinder *cyl, t_ray *ray, double *abc)
 		- cyl->radius * cyl->radius;
 }
 
+/* Checks if intersection point is within cylinder */
 static int	check_cyl_height(t_cylinder *cyl, t_ray *ray, double t)
 {
 	t_vector	p;
@@ -45,6 +47,7 @@ static int	check_cyl_height(t_cylinder *cyl, t_ray *ray, double t)
 	return (0);
 }
 
+/* Returns nearest valid cylinder body intersection */
 static double	get_cyl_t(t_cylinder *cyl, t_ray *ray, double *abc)
 {
 	double	delta;
@@ -65,6 +68,7 @@ static double	get_cyl_t(t_cylinder *cyl, t_ray *ray, double *abc)
 	return (-1);
 }
 
+/* Updates ray hit data for a cylinder intersection */
 static void	update_cyl_hit(t_ray *ray, t_scene *scene, int i, double t)
 {
 	ray->hit.hit = TRUE;
@@ -75,6 +79,7 @@ static void	update_cyl_hit(t_ray *ray, t_scene *scene, int i, double t)
 	ray->hit.delta = t;
 }
 
+/* Finds the nearest cylinder intersected by the ray */
 int	intersec_cylinders(t_ray *ray, t_scene *scene)
 {
 	int		i;

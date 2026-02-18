@@ -12,6 +12,7 @@
 
 #include "../../include/minirt.h"
 
+/* Returns TRUE if string is a valid double literal */
 t_bool	is_valid_double(char *str)
 {
 	int	i;
@@ -37,6 +38,7 @@ t_bool	is_valid_double(char *str)
 	return (dot_count <= 1);
 }
 
+/* Parses string to double or returns -999999.0 */
 double	parse_double(char *str)
 {
 	double	result;
@@ -50,6 +52,7 @@ double	parse_double(char *str)
 	return (result);
 }
 
+/* Frees a null-terminated array of strings */
 void	free_split(char **split)
 {
 	int	i;
