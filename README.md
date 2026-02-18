@@ -77,13 +77,15 @@ make re
 ```
 
 ## Scene Format (example)
-`A 0.2 255,255,255`
-`C -50,0,20 0,0,1 70`
-`L -40,0,30 0.7 255,255,255`
+```
+A 0.2 255,255,255
+C -50,0,20 0,0,1 70
+L -40,0,30 0.7 255,255,255
 
-`sp 0,0,20 20 255,0,0`
-`pl 0,0,0 0,1,0 200,200,200`
-`cy 50,0,20 0,0,1 14 21 0,0,255`
+sp 0,0,20 20 255,0,0
+pl 0,0,0 0,1,0 200,200,200
+cy 50,0,20 0,0,1 14 21 0,0,255
+```
 
 ## References
 - [gitbook.io](https://42-cursus.gitbook.io/guide/4-rank-04/minirt) - Official MiniRT project guide in the 42 curriculum
