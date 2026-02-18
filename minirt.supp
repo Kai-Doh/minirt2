@@ -1,0 +1,99 @@
+# Valgrind suppression file for miniRT
+# Suppresses still-reachable and other noise from external libraries
+# Usage: valgrind --suppressions=minirt.supp --leak-check=full ./miniRT scene.rt
+
+# ── X11 ──────────────────────────────────────────────────────────────────────
+
+{
+   X11_XOpenDisplay_still_reachable
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so*
+}
+
+{
+   X11_XOpenDisplay_indirect
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:XOpenDisplay
+   ...
+}
+
+{
+   X11_general_reachable
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:_X*
+   ...
+}
+
+# ── libxcb ───────────────────────────────────────────────────────────────────
+
+{
+   xcb_general_reachable
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libxcb.so*
+}
+
+{
+   xcb_writev_uninit
+   Memcheck:Param
+   writev(vector[0])
+   fun:writev
+   obj:/usr/lib/x86_64-linux-gnu/libxcb.so*
+   ...
+}
+
+# ── MiniLibX ─────────────────────────────────────────────────────────────────
+
+{
+   mlx_init_reachable
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:mlx_init
+   ...
+}
+
+{
+   mlx_new_window_reachable
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:mlx_new_window
+   ...
+}
+
+{
+   mlx_general_reachable
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:mlx_*
+   ...
+}
+
+# ── libc / system ─────────────────────────────────────────────────────────────
+
+{
+   libc_dl_init_reachable
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:_dl_init
+   ...
+}
+
+{
+   libc_dl_open_reachable
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:dlopen*
+   ...
+}

@@ -19,8 +19,8 @@
 # define FILE_INVALID "Error: Invalid file\n"
 # define EXT_INVALID "Error: File must have .rt extension\n"
 
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 1280
+# define HEIGHT 720
 
 # define NONE 0
 # define SPHERE 1
